@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 import Stepper, { Step } from './Cardcontact';
-import ModelViewer from './Model';
+import ModelDisplay from './CarModel'; // Import your new component
 import Footer from './Footer';
 
 const CardT = () => {
@@ -71,7 +73,7 @@ const CardT = () => {
                   marginTop: '1em'
                 }}
                 src="./wallP.jpg"
-                alt="Cute cat"
+                alt="Welcome"
               />
             </Step>
             <Step>
@@ -101,7 +103,7 @@ const CardT = () => {
             </Step>
             <Step>
               <h2 className="text-2xl font-bold mb-4 text-white">Step 3: Play Around!</h2>
-              <p className='text-white'>Explore this interactive 3D model of This Car</p>
+              <p className='text-white'>Explore this interactive 3D model</p>
             </Step>
             <Step>
               <h2 className="text-2xl font-bold mb-4 text-white">Final Step</h2>
@@ -110,17 +112,36 @@ const CardT = () => {
           </Stepper>
         </motion.div>
         
-        {/* Right Column: 3D Model with colored background */}
+        {/* Right Column: 3D Model */}
         <motion.div 
           className='w-full md:w-auto flex justify-center items-center'
           variants={fadeInUp}
         >
           <div className="bg-gradient-to-br from-black-800 to-gray-900 p-6 rounded-xl shadow-lg">
-            <ModelViewer
-              url="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/ToyCar/glTF-Binary/ToyCar.glb"
-              width={600}
-              height={400}
-            />
+            <Canvas
+              style={{ width: '600px', height: '400px' }}
+              camera={{ position: [0, 0, 5], fov: 50 }}
+              shadows
+            >
+              <ambientLight intensity={0.5} />
+              <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
+              <pointLight position={[-5, 5, -5]} intensity={0.3} />
+              
+              {/* Change the modelPath to any .glb or .gltf file */}
+              <ModelDisplay
+                modelPath="/models/bmw.glb"
+                position={[0, 0, 0]}
+                scale={2}
+              />
+              
+              <OrbitControls
+                enablePan={true}
+                enableZoom={true}
+                enableRotate={true}
+                minDistance={8}
+                maxDistance={10}
+              />
+            </Canvas>
           </div>
         </motion.div>
       </motion.div>
