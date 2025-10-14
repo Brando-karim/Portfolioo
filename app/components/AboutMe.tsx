@@ -108,7 +108,7 @@ export default function Me() {
             <div className="relative group">
               <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-gray-700 transition-all duration-500 group-hover:border-cyan-500/50 group-hover:shadow-2xl group-hover:shadow-cyan-500/20">
                 <Image
-                  src="/photo.jpg"
+                  src="/photo1.jpg"
                   alt="Benjelloul Karim - Portrait professionnel"
                   width={384}
                   height={384}
