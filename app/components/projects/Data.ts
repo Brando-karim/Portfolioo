@@ -30,7 +30,7 @@ export const myProjects: Project[] = [
     linkLabel: "Check Live Site",
     HasUrl: true,
     texture: "/assets/textures/project_pfe.mp4", // Placeholder texture
-    logo: "/assets/consoleverse.ico", // Placeholder logo
+    logo: "/assets/consoleverse.png", // Placeholder logo
     logoStyle: {
       backgroundColor: "#1e1e1e",
       border: "0.2px solid #6C63FF",
