@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import Stepper, { Step } from './Cardcontact';
-import ModelDisplay from './CarModel'; // Import your new component
+import ModelDisplay from './CarModel';
 import Footer from './Footer';
 
 const CardT = () => {
@@ -120,26 +120,27 @@ const CardT = () => {
           <div className="bg-gradient-to-br from-black-800 to-gray-900 p-6 rounded-xl shadow-lg">
             <Canvas
               style={{ width: '600px', height: '400px' }}
-              camera={{ position: [0, 0, 5], fov: 50 }}
+              camera={{ position: [0, 0, 25], fov: 50 }}
               shadows
             >
               <ambientLight intensity={0.5} />
               <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
               <pointLight position={[-5, 5, -5]} intensity={0.3} />
               
-              {/* Change the modelPath to any .glb or .gltf file */}
-              <ModelDisplay
-                modelPath="/models/bmw.glb"
-                position={[0, 0, 0]}
-                scale={2}
-              />
+              <Suspense fallback={null}>
+                <ModelDisplay
+                  modelPath="/models/gaming.glb"
+                  position={[1, 0, 0]}
+                  scale={2}
+                />
+              </Suspense>
               
               <OrbitControls
                 enablePan={true}
                 enableZoom={true}
                 enableRotate={true}
-                minDistance={8}
-                maxDistance={10}
+                minDistance={10}
+                maxDistance={30}
               />
             </Canvas>
           </div>

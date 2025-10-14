@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useGLTF, useVideoTexture } from "@react-three/drei";
+import { useGLTF, useVideoTexture, Html } from "@react-three/drei";
 import * as THREE from "three";
 
 interface DemoComputerProps {
@@ -12,11 +12,12 @@ interface DemoComputerProps {
   videoRotation?: { x: number; y: number; z: number };
   onDebugInfo?: (info: string) => void;
   screenMeshName?: string;
+  isInView?: boolean;
 }
 
 const DemoComputer: React.FC<DemoComputerProps> = ({
   texture,
-  position = [0, 0, -1.10], // Fixed Z position
+  position = [0, 0, -1.10],
   rotation = [0, 0, 0],
   scale = 2.2,
   videoPosition = { x: -0.150, y: 0.190, z: -0.230 },
@@ -24,18 +25,20 @@ const DemoComputer: React.FC<DemoComputerProps> = ({
   videoRotation = { x: 0, y: 0, z: 0 },
   onDebugInfo,
   screenMeshName,
+  isInView = true,
 }) => {
   const group = useRef<THREE.Group | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Load GLTF model
   const gltf = useGLTF("/models/desktop_computer.glb") as any;
   const { nodes = {}, materials = {} } = gltf || {};
 
-  // Load video texture if provided
-  const videoTexture = texture ? useVideoTexture(texture) : null;
+  // Load video texture - always call the hook, but pass null if no texture
+  const videoTexture = useVideoTexture(texture || null);
 
-  // Play video
+  // Play/pause video based on visibility
   useEffect(() => {
     if (videoTexture && (videoTexture as any).image) {
       const video = (videoTexture as any).image as HTMLVideoElement;
@@ -43,14 +46,21 @@ const DemoComputer: React.FC<DemoComputerProps> = ({
         video.loop = true;
         video.muted = true;
         video.playsInline = true;
-        video.currentTime = 0;
-        const p = video.play();
-        if (p && typeof p.then === "function") p.catch(() => {});
+        
+        if (isInView) {
+          // Play when in view
+          video.currentTime = 0;
+          const p = video.play();
+          if (p && typeof p.then === "function") p.catch(() => {});
+        } else {
+          // Pause when out of view
+          video.pause();
+        }
       } catch {
         // ignore playback errors
       }
     }
-  }, [videoTexture, texture]);
+  }, [videoTexture, texture, isInView]);
 
   // Mobile detection
   useEffect(() => {
@@ -60,7 +70,7 @@ const DemoComputer: React.FC<DemoComputerProps> = ({
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Fix materials
+  // Fix materials and mark as loaded
   useEffect(() => {
     if (!materials) return;
     Object.values(materials).forEach((mat: any) => {
@@ -77,6 +87,10 @@ const DemoComputer: React.FC<DemoComputerProps> = ({
         // ignore per-material problems
       }
     });
+    
+    // Mark model as loaded after a short delay
+    const timeout = setTimeout(() => setIsLoaded(true), 500);
+    return () => clearTimeout(timeout);
   }, [materials]);
 
   // Filter nodes that have geometry
@@ -101,83 +115,127 @@ const DemoComputer: React.FC<DemoComputerProps> = ({
   }, [nodeEntries, materials, videoTexture, onDebugInfo, screenMeshName]);
 
   return (
-    <group ref={group} dispose={null} position={position} rotation={rotation} scale={scale}>
-      {/* Lighting */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <pointLight position={[0, 2, 0]} intensity={0.5} />
-      
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          {/* Render 3D model */}
-          {nodeEntries.length > 0 ? (
-            nodeEntries.map(([name, node]: any) => {
-              // Find appropriate material
-              let mat = null;
-              try {
-                if (node.material && typeof node.material === "string" && materials[node.material]) {
-                  mat = materials[node.material];
-                } else if (node.material && node.material.name && materials[node.material.name]) {
-                  mat = materials[node.material.name];
-                } else {
-                  mat = materials["01___Default"] || Object.values(materials)[0] || null;
-                }
-              } catch {
-                mat = Object.values(materials)[0] || null;
+    <>
+      {/* Loading Animation */}
+      {!isLoaded && (
+        <Html center>
+          <div className="loader" />
+          <style>{`
+            .loader {
+              width: 60px;
+              aspect-ratio: 1;
+              --c: no-repeat linear-gradient(#046D8B 0 0);
+              background: var(--c), var(--c), var(--c), var(--c);
+              animation: 
+                l9-1 1.5s infinite,
+                l9-2 1.5s infinite;
+            }
+            @keyframes l9-1 {
+              0%   { background-size: 0 4px, 4px 0; }
+              25%  { background-size: 40px 4px, 4px 0; }
+              45%,
+              55%  { background-size: 40px 4px, 4px 42px; }
+              75%  { background-size: 0 4px, 4px 42px; }
+              100% { background-size: 0 4px, 4px 0; }
+            }
+            @keyframes l9-2 {
+              0%, 49.9% { 
+                background-position: 0 38px, 18px 18px, 100% 18px, right 18px bottom 18px; 
               }
+              50%, 100% { 
+                background-position: right 20px bottom 18px, 18px 100%, 20px 18px, right 18px top 0; 
+              }
+            }
+          `}</style>
+        </Html>
+      )}
 
-              // If this is the selected screen mesh and we have a video, use video texture
-              const isScreenMesh = screenMeshName === name;
-              
-              if (isScreenMesh && videoTexture) {
-                // Clone the material and replace with video texture
-                const videoMat = mat ? mat.clone() : new THREE.MeshBasicMaterial();
-                videoMat.map = videoTexture;
-                videoMat.needsUpdate = true;
+      {/* Model - only visible when loaded */}
+      <group 
+        ref={group} 
+        dispose={null} 
+        position={position} 
+        rotation={rotation} 
+        scale={scale}
+        visible={isLoaded}
+      >
+        {/* Lighting */}
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <pointLight position={[0, 2, 0]} intensity={0.5} />
+        
+        <group rotation={[-Math.PI / 2, 0, 0]}>
+          <group rotation={[Math.PI / 2, 0, 0]}>
+            {/* Render 3D model */}
+            {nodeEntries.length > 0 ? (
+              nodeEntries.map(([name, node]: any) => {
+                // Find appropriate material
+                let mat = null;
+                try {
+                  if (node.material && typeof node.material === "string" && materials[node.material]) {
+                    mat = materials[node.material];
+                  } else if (node.material && node.material.name && materials[node.material.name]) {
+                    mat = materials[node.material.name];
+                  } else {
+                    mat = materials["01___Default"] || Object.values(materials)[0] || null;
+                  }
+                } catch {
+                  mat = Object.values(materials)[0] || null;
+                }
+
+                // If this is the selected screen mesh and we have a video, use video texture
+                const isScreenMesh = screenMeshName === name;
                 
+                if (isScreenMesh && videoTexture) {
+                  // Clone the material and replace with video texture
+                  const videoMat = mat ? mat.clone() : new THREE.MeshBasicMaterial();
+                  videoMat.map = videoTexture;
+                  videoMat.needsUpdate = true;
+                  
+                  return (
+                    <mesh
+                      key={name}
+                      geometry={node.geometry}
+                      material={videoMat}
+                      castShadow
+                      receiveShadow
+                    />
+                  );
+                }
+
                 return (
                   <mesh
                     key={name}
                     geometry={node.geometry}
-                    material={videoMat}
+                    material={mat || undefined}
                     castShadow
                     receiveShadow
                   />
                 );
-              }
+              })
+            ) : (
+              // Fallback cube if no model loaded
+              <mesh position={[0, 0, 0]}>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial color="hotpink" />
+              </mesh>
+            )}
 
-              return (
-                <mesh
-                  key={name}
-                  geometry={node.geometry}
-                  material={mat || undefined}
-                  castShadow
-                  receiveShadow
-                />
-              );
-            })
-          ) : (
-            // Fallback cube if no model loaded
-            <mesh position={[0, 0, 0]}>
-              <boxGeometry args={[1, 1, 1]} />
-              <meshStandardMaterial color="hotpink" />
-            </mesh>
-          )}
-
-          {/* Backup: Video screen overlay (only show if no screen mesh selected) */}
-          {videoTexture && !screenMeshName && (
-            <mesh
-              position={[videoPosition.x, videoPosition.y, videoPosition.z]}
-              rotation={[videoRotation.x, videoRotation.y, videoRotation.z]}
-              scale={[videoScale.x, videoScale.y, 1]}
-            >
-              <planeGeometry args={[1, 1]} />
-              <meshBasicMaterial map={videoTexture as any} toneMapped={false} />
-            </mesh>
-          )}
+            {/* Backup: Video screen overlay (only show if no screen mesh selected) */}
+            {videoTexture && !screenMeshName && (
+              <mesh
+                position={[videoPosition.x, videoPosition.y, videoPosition.z]}
+                rotation={[videoRotation.x, videoRotation.y, videoRotation.z]}
+                scale={[videoScale.x, videoScale.y, 1]}
+              >
+                <planeGeometry args={[1, 1]} />
+                <meshBasicMaterial map={videoTexture as any} toneMapped={false} />
+              </mesh>
+            )}
+          </group>
         </group>
       </group>
-    </group>
+    </>
   );
 };
 

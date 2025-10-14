@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./projects.css";
 import { myProjects } from './Data';
@@ -32,10 +32,33 @@ const projectCount = myProjects.length;
 
 const Projects: React.FC = () => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<number>(0);
+  const [isInView, setIsInView] = useState(false);
   const leftCardRef = useRef<HTMLDivElement | null>(null);
+  const canvasRef = useRef<HTMLDivElement | null>(null);
   
   // Toggle between control mode and production mode
-  const [useControls, setUseControls] = useState(false); // Set to true to use controls
+  const [useControls, setUseControls] = useState(false);
+
+  // Intersection Observer to detect when canvas is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentCanvas = canvasRef.current;
+    if (currentCanvas) {
+      observer.observe(currentCanvas);
+    }
+
+    return () => {
+      if (currentCanvas) {
+        observer.unobserve(currentCanvas);
+      }
+    };
+  }, []);
 
   const handleLeftCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = leftCardRef.current;
@@ -191,6 +214,7 @@ const Projects: React.FC = () => {
 
         {/* Right Card - 3D Computer Display */}
         <motion.div 
+          ref={canvasRef}
           className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full"
           variants={fadeInUp}
         >
@@ -209,18 +233,19 @@ const Projects: React.FC = () => {
                 minDistance={1}
                 maxDistance={6}
                 target={[0, 0, 0]}
-                minPolarAngle={Math.PI / 4}      // Prevents rotating too high (top view)
-                maxPolarAngle={Math.PI / 2}      // Prevents rotating too low (bottom view)
-                maxAzimuthAngle={Math.PI / 2}    // Limits right rotation
-                minAzimuthAngle={-Math.PI / 2}   // Limits left rotation
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 2}
+                maxAzimuthAngle={Math.PI / 2}
+                minAzimuthAngle={-Math.PI / 2}
               />
               
               <DemoComputer 
                 texture={currentProject.texture || ''} 
-                position={[0, 0, -1.10]}  // Fixed Z position
+                position={[0, 0, -1.10]}
                 scale={2.2}
                 videoPosition={{ x: -0.150, y: 0.190, z: -0.233 }}
                 videoScale={{ x: 1.40, y: 0.87 }}
+                isInView={isInView}
               />
             </Canvas>
           )}
