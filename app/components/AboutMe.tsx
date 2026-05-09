@@ -33,7 +33,7 @@ export default function Me() {
   }, [])
 
   return (
-    <main className="min-h-screen text-white overflow-hidden" id="home">
+    <main className="min-h-screen text-foreground overflow-hidden" id="home">
       <div className="container mx-auto px-6 py-16" ref={containerRef}>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
           {/* Content Section */}
@@ -45,7 +45,7 @@ export default function Me() {
 
             {/* Name */}
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200">
-              <div className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-6 whitespace-nowrap">
+              <div className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-6 whitespace-nowrap">
                 <span className="mr-4">Benjelloul</span>
                 <SplitText
                   text="Karim"
@@ -66,7 +66,7 @@ export default function Me() {
 
             {/* Title */}
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-400">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 font-light text-balance leading-relaxed max-w-2xl">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl text-foreground mb-8 font-light text-balance leading-relaxed max-w-2xl">
                 Développeur Full-Stack & Ingénieur en Logiciels passionné par linnovation technologique.
               </h2>
             </div>
@@ -83,7 +83,7 @@ export default function Me() {
                 >
                   <span className="group-hover:translate-x-1 transition-transform duration-200"><a href="#projects">See My Projects</a></span>
                 </Button>
-<a href="/My CV.pdf" target="_blank" rel="noopener noreferrer" download>
+<a href="/WorkTrueCv.pdf" target="_blank" rel="noopener noreferrer" download>
   <Button
     variant="outline"
     size="lg"

@@ -29,6 +29,22 @@ const workExperiences: WorkExperience[] = [
       "Project delivered successfully within the given timeframe",
     ],
   },
+{
+  role: "Freelance Full Stack Developer",
+  company: "Elyassini Exchange App",
+  location: "Tangier, Morocco",
+  period: "December 2025 - January 2026",
+  logo: "/elyassini.png",
+  achievements: [
+    "Designed and developed a web-based exchange management application for currency and transaction operations",
+    "Handled full-stack development including backend implementation and a mobile frontend built with React Native Expo",
+    "Built a responsive and intuitive mobile user interface for a smooth user experience",
+    "Managed data architecture and integrated the database system efficiently",
+    "Implemented core features including operations management, user management, and transaction tracking",
+    "Optimized application performance and fixed bugs to improve stability and usability",
+    "Communicated directly with the client to gather requirements and deliver the requested features",
+  ],
+},
 ]
 
 const WorkExperienceCard: React.FC = () => {
@@ -76,7 +92,7 @@ const WorkExperienceCard: React.FC = () => {
             visibleElements.has("header") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-light mb-4 bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-light mb-4 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent">
             Work Experience
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto animate-pulse"></div>
@@ -115,7 +131,7 @@ const WorkExperienceCard: React.FC = () => {
                         />
                       )}
 
-                      <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-violet-300 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                         {experience.role}
                       </h3>
                     </div>
@@ -127,14 +143,14 @@ const WorkExperienceCard: React.FC = () => {
                     </div>
 
                     {/* Company and Location */}
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-gray-300 mb-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-muted-foreground mb-6">
                       <div className="flex items-center gap-2">
                         <Building2 className="w-5 h-5 text-gray-400 group-hover:scale-110 transition-transform duration-300" />
                         <span className="font-semibold text-lg">{experience.company}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-gray-400 group-hover:bounce transition-transform duration-300" />
-                        <span className="italic text-gray-400">{experience.location}</span>
+                        <span className="italic text-muted-foreground">{experience.location}</span>
                       </div>
                     </div>
                   </div>
@@ -157,7 +173,7 @@ const WorkExperienceCard: React.FC = () => {
                         }}
                       >
                         <div className="w-2 h-2 bg-gradient-to-r from-violet-400 to-purple-400 rounded-full mt-3 flex-shrink-0 group-hover:scale-150 transition-transform duration-300"></div>
-                        <p className="text-gray-300 leading-relaxed text-base group-hover:text-gray-200 transition-colors duration-300">
+                        <p className="text-muted-foreground leading-relaxed text-base group-hover:text-foreground transition-colors duration-300">
                           {achievement}
                         </p>
                       </div>

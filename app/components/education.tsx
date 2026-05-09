@@ -15,6 +15,14 @@ interface Education {
 
 const educationData: Education[] = [
   {
+  degree: "1st Year Engineering Cycle in Computer Engineering",
+  institution: "ENSI - École des Nouvelles Sciences et Ingénierie",
+  location: "Tangier, Morocco",
+  period: "2025 – 2026",
+  description:
+    "Specialization in Computer Engineering. Key modules included Algorithms, C Programming, Web Development, Cloud Computing, Databases (PostgreSQL, T-SQL, SQL Server), and UML.",
+},
+  {
     degree: "DTS Développement Digital",
     institution: "ISMONTIC-OFPPT",
     location: "Tangier, Morocco",
@@ -66,7 +74,7 @@ const Education: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <motion.div className="text-center mb-16" variants={fadeInUp}>
-          <h2 className="text-4xl md:text-5xl font-light  mb-4 bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-light  mb-4 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent">
             Education
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto animate-pulse"></div>
@@ -89,7 +97,7 @@ const Education: React.FC = () => {
                 <div className="ml-20 w-full group-hover:translate-x-2 transition-transform duration-300">
                   {/* Header */}
                   <div className="mb-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors duration-300">
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                       {education.degree}
                     </h3>
 
@@ -108,20 +116,20 @@ const Education: React.FC = () => {
                     </div>
 
                     {/* Institution and Location */}
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-gray-300 mb-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
                         <GraduationCap className="w-5 h-5 text-gray-400 group-hover:scale-110 transition-transform duration-300" />
                         <span className="font-semibold">{education.institution}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-gray-400 group-hover:bounce transition-transform duration-300" />
-                        <span className="italic text-gray-400">{education.location}</span>
+                        <span className="italic text-muted-foreground">{education.location}</span>
                       </div>
                     </div>
                   </div>
 
                   <div className="pl-4 border-l-2 border-violet-500/20 group-hover:border-violet-500/40 transition-colors duration-300">
-                    <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                    <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
                       {education.description}
                     </p>
                   </div>

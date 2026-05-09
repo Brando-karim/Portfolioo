@@ -268,6 +268,7 @@ videoRotation={{ x: ${videoRotation.x}, y: ${videoRotation.y}, z: ${videoRotatio
 
       {/* Canvas with 3D Scene */}
       <Canvas 
+        frameloop="demand"
         camera={{ position: [0, 0, 5], fov: 45 }} 
         style={{ width: '100%', height: '100%', background: '#1a1a1a' }}
       >

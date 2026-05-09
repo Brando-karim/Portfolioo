@@ -118,7 +118,7 @@ const Projects: React.FC = () => {
       variants={staggerContainer}
     >
       <motion.h1 
-        className="text-5xl font-light text-white text-center mb-20 tracking-wide"
+        className="text-5xl font-light text-center mb-20 tracking-wide bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent"
         variants={fadeInUp}
       >
         What I've Built
@@ -223,7 +223,7 @@ const Projects: React.FC = () => {
             <ComputerWithControls texture={currentProject.texture || ''} />
           ) : (
             // PRODUCTION MODE - Final version with set values
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+            <Canvas frameloop="demand" camera={{ position: [0, 0, 5], fov: 45 }}>
               <color attach="background" args={['#1a1a1a']} />
               
               <OrbitControls 

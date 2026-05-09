@@ -79,11 +79,11 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div className="text-center mb-16" variants={fadeInUp}>
-  <h1 className="text-4xl md:text-5xl font-light mb-4 bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent">
+  <h1 className="text-4xl md:text-5xl font-light mb-4 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent">
     What I Offer
   </h1>
   <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto animate-pulse mb-6"></div>
-  <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+  <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
     Discover the skills and qualities I bring to every project
   </p>
 </motion.div>
@@ -100,10 +100,10 @@ export default function Home() {
                 thickness={2}
                 style={{ borderRadius: 16 }}
               >
-                <div className="bg-slate-900/60 p-8 rounded-xl hover:scale-105 transform transition-all duration-300 flex flex-col">
+                <div className="bg-card/60 backdrop-blur-sm border border-border/50 p-8 rounded-xl hover:scale-105 hover:shadow-lg transform transition-all duration-300 flex flex-col">
                   {offer.icon}
-                  <h3 className="text-xl font-bold text-white mb-4 tracking-wide">{offer.title}</h3>
-                  <p className="text-slate-300 leading-relaxed mb-6">{offer.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-4 tracking-wide">{offer.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{offer.description}</p>
                 </div>
               </ElectricBorder>
             </motion.div>

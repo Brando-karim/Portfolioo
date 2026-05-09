@@ -9,8 +9,6 @@ export default function ProjectsShowcase() {
   useEffect(() => {
     document.documentElement.classList.remove("light", "dark")
     document.documentElement.classList.add(theme)
-    document.documentElement.style.color = theme === "dark" ? "#cbd5e1" : "#000000"
-    document.body.style.backgroundColor = theme === "dark" ? "#0b0b0f" : "#000000"
   }, [theme])
 
   const toggleTheme = () => setTheme((prev) => (prev === "light" ? "dark" : "light"))

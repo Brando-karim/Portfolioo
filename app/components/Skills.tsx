@@ -95,7 +95,7 @@ export default function Myskills() {
     >
 <motion.h1
   ref={titleRef}
-  className="text-4xl md:text-5xl font-light text-center mb-12 bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent will-change-transform will-change-opacity"
+  className="text-4xl md:text-5xl font-light text-center mb-12 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent will-change-transform will-change-opacity"
   variants={fadeInUpVariants}
   initial="hidden"
   animate={isTitleInView ? "visible" : "hidden"}
@@ -107,7 +107,7 @@ export default function Myskills() {
 
       <motion.div
         ref={logoRef}
-        className="text-white dark:text-white will-change-transform will-change-opacity"
+        className="text-foreground will-change-transform will-change-opacity"
         variants={fadeInUpVariants}
         initial="hidden"
         animate={isLogoInView ? "visible" : "hidden"}

@@ -36,7 +36,7 @@ export default function CertAct() {
     <div className="w-full flex flex-col items-center py-10 px-4">
       {/* Title */}
 <motion.h1
-  className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-10 bg-gradient-to-r from-white via-violet-200 to-white bg-clip-text text-transparent"
+  className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-10 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent"
   initial={{ opacity: 0, y: -20 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6 }}
