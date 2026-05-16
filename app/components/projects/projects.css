@@ -518,7 +518,7 @@ section {
   mask-composite: intersect;
   mask-clip: padding-box, border-box;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: opacity 0.5s ease;
 }
 
 .glow {

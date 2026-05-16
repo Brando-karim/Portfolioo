@@ -37,9 +37,12 @@ const CardT = () => {
       {/* Centered H1 */}
       <motion.div className="text-center mb-12" variants={fadeInUp}>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-light mb-6 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent">
-          Get In Touch
+          Let&apos;s Work Together
         </h1>
-        <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto animate-pulse"></div>
+        <div className="w-24 h-1 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full mx-auto animate-pulse mb-6"></div>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          I&apos;m open to junior full-stack and frontend developer roles — on-site in Morocco, remote from Tangier, or with teams in the EU.
+        </p>
       </motion.div>
 
       <motion.div 

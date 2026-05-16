@@ -11,40 +11,43 @@ interface WorkExperience {
   period: string
   logo?: string
   achievements: string[]
+  stack?: string[]
 }
 
 const workExperiences: WorkExperience[] = [
   {
-    role: "Full Stack Developer",
-    company: "ENT.com",
+    role: "Freelance Full-Stack Developer",
+    company: "Elyassini Exchange App",
     location: "Tangier, Morocco",
-    period: " April 2025 - May 2025",
-    logo: "/ent-logo.png", // ✅ Put your uploaded logo in the /public folder
+    period: "December 2025 – January 2026",
+    logo: "/elyassini.png",
     achievements: [
-      "Completed a one-month internship project: Developed a school management and communication website",
-      "Built responsive and interactive pages using Laravel, React, JavaScript, and CSS",
-      "Integrated MySQL database for efficient data management and retrieval",
-      "Worked efficiently using PhpStorm for development and debugging",
-      "Optimized application performance, ensuring cross-browser compatibility",
-      "Project delivered successfully within the given timeframe",
+      "Designed and developed a web-based exchange management application for currency and transaction operations.",
+      "Handled full-stack development including backend implementation and a mobile frontend built with React Native Expo.",
+      "Built a responsive and intuitive mobile user interface for a smooth user experience.",
+      "Managed data architecture and integrated the database system efficiently.",
+      "Implemented core features including operations management, user management, and transaction tracking.",
+      "Optimized application performance and fixed bugs to improve stability and usability.",
+      "Communicated directly with the client to gather requirements and deliver the requested features.",
     ],
+    stack: ["React Native", "Expo", "Laravel", "PHP", "MySQL", "REST APIs", "Git"],
   },
-{
-  role: "Freelance Full Stack Developer",
-  company: "Elyassini Exchange App",
-  location: "Tangier, Morocco",
-  period: "December 2025 - January 2026",
-  logo: "/elyassini.png",
-  achievements: [
-    "Designed and developed a web-based exchange management application for currency and transaction operations",
-    "Handled full-stack development including backend implementation and a mobile frontend built with React Native Expo",
-    "Built a responsive and intuitive mobile user interface for a smooth user experience",
-    "Managed data architecture and integrated the database system efficiently",
-    "Implemented core features including operations management, user management, and transaction tracking",
-    "Optimized application performance and fixed bugs to improve stability and usability",
-    "Communicated directly with the client to gather requirements and deliver the requested features",
-  ],
-},
+  {
+    role: "Full-Stack Developer Intern",
+    company: "ENT.com — School Management Platform",
+    location: "Tangier, Morocco",
+    period: "April 2025 – May 2025",
+    logo: "/ent-logo.png",
+    achievements: [
+      "Developed a school management and communication platform for staff and students.",
+      "Built responsive frontend interfaces with React and CSS, ensuring cross-browser compatibility.",
+      "Implemented backend logic in Laravel with MySQL for records, scheduling, and announcements.",
+      "Worked efficiently using PhpStorm for development and debugging.",
+      "Optimized application performance and ensured cross-browser compatibility.",
+      "Delivered successfully within a 4-week sprint.",
+    ],
+    stack: ["Laravel", "React", "JavaScript", "CSS", "MySQL", "Git"],
+  },
 ]
 
 const WorkExperienceCard: React.FC = () => {
@@ -88,9 +91,8 @@ const WorkExperienceCard: React.FC = () => {
         <div
           id="header"
           data-animate
-          className={`text-center mb-16 transition-all duration-1000 ${
-            visibleElements.has("header") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`text-center mb-16 transition-all duration-1000 ${visibleElements.has("header") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <h2 className="text-4xl md:text-5xl font-light mb-4 bg-gradient-to-r from-foreground via-primary/80 to-foreground bg-clip-text text-transparent">
             Work Experience
@@ -109,9 +111,8 @@ const WorkExperienceCard: React.FC = () => {
                 key={index}
                 id={`experience-${index}`}
                 data-animate
-                className={`relative flex items-start group transition-all duration-1000 ${
-                  visibleElements.has(`experience-${index}`) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                }`}
+                className={`relative flex items-start group transition-all duration-1000 ${visibleElements.has(`experience-${index}`) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                  }`}
                 style={{
                   transitionDelay: visibleElements.has(`experience-${index}`) ? `${index * 200}ms` : "0ms",
                 }}
@@ -161,11 +162,10 @@ const WorkExperienceCard: React.FC = () => {
                         key={achievementIndex}
                         id={`achievement-${index}-${achievementIndex}`}
                         data-animate
-                        className={`flex items-start gap-4 group-hover:translate-x-1 transition-all duration-1000 ${
-                          visibleElements.has(`achievement-${index}-${achievementIndex}`)
+                        className={`flex items-start gap-4 group-hover:translate-x-1 transition-all duration-1000 ${visibleElements.has(`achievement-${index}-${achievementIndex}`)
                             ? "opacity-100 translate-y-0"
                             : "opacity-0 translate-y-6"
-                        }`}
+                          }`}
                         style={{
                           transitionDelay: visibleElements.has(`achievement-${index}-${achievementIndex}`)
                             ? `${index * 200 + achievementIndex * 150}ms`

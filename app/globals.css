@@ -44,62 +44,85 @@
 }
 
 :root {
+  /* Light mode — soft off-white, dark gray text, comfortable contrast */
   --radius: 0.625rem;
-  --background: #fcfcfd;
-  --foreground: #0f172a;
+  --background: #f0f0f5;
+  --foreground: #1a1a2e;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #1a1a2e;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #7c3aed;
+  --popover-foreground: #1a1a2e;
+  --primary: #0891b2;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --destructive: #ef4444;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #7c3aed;
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0f172a;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #7c3aed;
+  --secondary: #e8e8ee;
+  --secondary-foreground: #475569;
+  --muted: #e8e8ee;
+  --muted-foreground: #94a3b8;
+  --accent: #e8e8ee;
+  --accent-foreground: #1a1a2e;
+  --destructive: #dc2626;
+  --border: #e2e2ea;
+  --input: #e2e2ea;
+  --ring: #0891b2;
+  --sidebar: #f0f0f5;
+  --sidebar-foreground: #1a1a2e;
+  --sidebar-primary: #0891b2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8e8ee;
+  --sidebar-accent-foreground: #1a1a2e;
+  --sidebar-border: #e2e2ea;
+  --sidebar-ring: #0891b2;
+
+  --accent-cyan: #0891b2;
+  --accent-cyan-hover: #06b6d4;
+  --accent-purple: #4f46e5;
+  --accent-purple-glow: #6366f1;
+  --accent-signature: #d97706;
+
+  --nav-bg: rgba(240, 240, 245, 0.75);
+  --nav-border: rgba(0,0,0,0.05);
+
+  --card-glow-hover: conic-gradient(from calc((var(--start) - 15) * 1deg), rgba(150,150,150,0.3) 0deg, rgba(200,200,200,0.6) 60deg, rgba(150,150,150,0.3) 120deg);
 }
 
 .dark {
-  --background: #0b0f19;
-  --foreground: #e2e8f0;
-  --card: #131825;
-  --card-foreground: #e2e8f0;
-  --popover: #131825;
-  --popover-foreground: #e2e8f0;
-  --primary: #8b5cf6;
+  --background: #070709;
+  --foreground: #f1f5f9;
+  --card: #0e0e12;
+  --card-foreground: #f1f5f9;
+  --popover: #0e0e12;
+  --popover-foreground: #f1f5f9;
+  --primary: #06b6d4;
   --primary-foreground: #ffffff;
-  --secondary: #1e293b;
-  --secondary-foreground: #e2e8f0;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
-  --accent-foreground: #e2e8f0;
+  --secondary: #13131a;
+  --secondary-foreground: #94a3b8;
+  --muted: #13131a;
+  --muted-foreground: #64748b;
+  --accent: #13131a;
+  --accent-foreground: #f1f5f9;
   --destructive: #ef4444;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #8b5cf6;
-  --sidebar: #131825;
-  --sidebar-foreground: #e2e8f0;
-  --sidebar-primary: #8b5cf6;
+  --border: rgba(255, 255, 255, 0.05);
+  --input: #13131a;
+  --ring: #06b6d4;
+  --sidebar: #0e0e12;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #06b6d4;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1e293b;
-  --sidebar-accent-foreground: #e2e8f0;
-  --sidebar-border: #1e293b;
-  --sidebar-ring: #8b5cf6;
+  --sidebar-accent: #13131a;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: rgba(255, 255, 255, 0.05);
+  --sidebar-ring: #06b6d4;
+
+  --accent-cyan: #06b6d4;
+  --accent-cyan-hover: #0891b2;
+  --accent-purple: #6366f1;
+  --accent-purple-glow: #818cf8;
+  --accent-signature: #f59e0b;
+
+  --nav-bg: rgba(7, 7, 9, 0.75);
+  --nav-border: rgba(255,255,255,0.05);
+
+  --card-glow-hover: conic-gradient(from calc((var(--start) - 15) * 1deg), var(--accent-cyan) 0deg, var(--accent-purple) 60deg, var(--accent-cyan) 120deg);
 }
 
 @layer base {
@@ -110,4 +133,21 @@
     @apply bg-background text-foreground transition-colors duration-500 ease-in-out;
   }
 }
+
+/* Light mode — card subtle border instead of heavy shadows */
+:root .section-card,
+.light .section-card {
+  border: 1px solid #E5E5E5;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* Light mode — cyan badges tone down to avoid neon look */
+:root .text-cyan-400,
+.light .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+
+
 

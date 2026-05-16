@@ -22,10 +22,10 @@ export interface Project {
 
 export const myProjects: Project[] = [
   {
-    title: "PFE Console Verse – PC Components Platform",
-    desc: "PFE Console Verse is a final-year project built with Laravel, CSS, MySQL, Bootstrap, and JavaScript. It's a platform where users can configure their own PCs by selecting components, with dedicated dashboards for both users and administrators.",
+    title: "Console Verse — PC Configuration Platform",
+    desc: "A PC component configuration platform where users can build and configure their own systems. Features dedicated dashboards for users and administrators, built with Laravel, CSS, MySQL, Bootstrap, and JavaScript.",
     subdesc:
-      "A key feature is 'The Expedition,' a Deepseek R1-based chatbot that guides customers. The admin can manage product requests, and accept or refuse user-made PC configurations.",
+      "A PC configuration platform with an AI-powered chatbot (Deepseek R1) for customer guidance and an admin dashboard for inventory management. The admin can review, accept, or refuse user-submitted PC configurations.",
     href: "https://github.com/Brando-karim/PFE-PC", // Assuming no direct link was provided, can be updated later if available
     linkLabel: "Check Live Site",
     HasUrl: true,
@@ -71,10 +71,10 @@ export const myProjects: Project[] = [
     ],
   },
   {
-    title: "ENT – OFPPT ISTA NTIC Tanger Website",
-    desc: "ENT is an internship project for OFPPT ISTA NTIC Tanger. This website provides essential resources for students and teachers, offering courses, a live chat, and a space for finding internships.",
+    title: "ENT — School Management Platform",
+    desc: "A responsive web platform for educational institutions developed as an internship project for OFPPT ISTA NTIC Tanger. Features student records, scheduling, announcements, and cross-browser compatibility.",
     subdesc:
-      "Built with MySQL, Laravel, Next.js, and other tools, this platform centralizes institutional resources and enhances collaboration within the academic community.",
+      "Built with MySQL, Laravel, Next.js, and other tools. Features a live chat, course resources, and internship discovery space, centralizing institutional resources and enhancing collaboration.",
     href: "#", // Assuming no direct link was provided, can be updated later if available
     linkLabel: "More Info",
     HasUrl: false,

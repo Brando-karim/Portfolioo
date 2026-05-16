@@ -28,9 +28,23 @@ export const certificationsData: CarouselItem[] = [
     image : './cisco-banner.jpg'
   },
   {
-    title: 'HTML Fundamentals',
+    title: ' AI Fundamentals with IBM  ',
     description: 'Cisco Networking Academy',
     id: 3,
+    icon: <FiCode className="h-[16px] w-[16px] text-white" />,
+    image : './cisco-ai.jpg'
+  },
+  {
+    title: ' Artificial Intelligence',
+    description: 'IBM SkillsBuild',
+    id: 4,
+    icon: <FiCode className="h-[16px] w-[16px] text-white" />,
+    image : './IBM.png'
+  },
+  {
+    title: 'HTML Fundamentals',
+    description: 'Cisco Networking Academy',
+    id: 5,
     icon: <FiLayers className="h-[16px] w-[16px] text-white" />,
     image : './html5.jpg'
   }

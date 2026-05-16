@@ -5,51 +5,44 @@
 // https://codepen.io/BalintFerenczy/pen/KwdoyEN
 
 import { FaLightbulb, FaRocket, FaSyncAlt, FaBook, FaPalette, FaSearch } from "react-icons/fa"
-import ElectricBorder from "./Card"
 import { motion } from "framer-motion"
 
 export default function Home() {
   const offers = [
     {
-      title: "PROBLEM-SOLVING MINDSET",
+      title: "FRONTEND DEVELOPMENT",
       description:
-        "I don’t just write code — I analyze challenges and find the most efficient solutions. Whether it’s debugging complex issues or designing scalable systems, I focus on creating results that truly solve problems.",
-      link: "Learn More",
+        "Responsive UIs built with React, JavaScript, and CSS. I prioritize accessible, pixel-perfect interfaces that work seamlessly across devices and browsers.",
       icon: <FaLightbulb className="text-blue-400 w-8 h-8 mb-4" />,
     },
     {
-      title: "SPEED & EFFICIENCY",
+      title: "BACKEND & APIs",
       description:
-        "I value both speed and quality. My workflow is optimized to deliver projects quickly while keeping the code clean and maintainable, ensuring faster turnaround without compromising performance.",
-      link: "See How",
+        "RESTful API design and database architecture with Laravel and MySQL. I build clean, maintainable server-side logic that powers reliable web applications.",
       icon: <FaRocket className="text-blue-400 w-8 h-8 mb-4" />,
     },
     {
-      title: "ADAPTABILITY",
+      title: "MOBILE DEVELOPMENT",
       description:
-        "Technology evolves fast, and I evolve with it. I can quickly learn new tools, frameworks, or processes, making me flexible in any environment — from startups to large-scale projects.",
-      link: "Explore More",
+        "Cross-platform mobile apps with React Native and Expo. From UI to API integration, I deliver smooth native experiences for both iOS and Android.",
       icon: <FaSyncAlt className="text-blue-400 w-8 h-8 mb-4" />,
     },
     {
-      title: "CONTINUOUS LEARNING",
+      title: "AI INTEGRATION",
       description:
-        "I sharpen my skills by actively exploring new technologies, learning best practices, and experimenting with innovative approaches. This ensures I consistently bring fresh and creative ideas. ",
-      link: "View My Journey",
+        "LLM-powered features and intelligent chatbots — such as the Deepseek R1-based assistant in Console Verse — that enhance user experience and automate workflows.",
       icon: <FaBook className="text-blue-400 w-8 h-8 mb-4" />,
     },
     {
-      title: "CREATIVITY",
+      title: "DATABASE DESIGN",
       description:
-        "Beyond functionality, I bring originality to my work. From UI/UX design ideas to innovative problem-solving approaches, I aim to make projects not just work well, but also stand out exceptionally.",
-      link: "Discover More",
+        "Relational schema design, query optimization, and data modeling with PostgreSQL and MySQL. I structure data for performance, clarity, and long-term scalability.",
       icon: <FaPalette className="text-blue-400 w-8 h-8 mb-4" />,
     },
     {
-      title: "ATTENTION TO DETAIL",
+      title: "VERSION CONTROL & COLLABORATION",
       description:
-        "I believe small details make a big difference. From clean code structure to pixel-perfect designs, I ensure every element contributes to a polished and professional final product consistently. ",
-      link: "See My Work",
+        "Git, GitHub, and Jira for structured workflows. I communicate directly with clients to gather requirements and deliver iteratively, on time and on spec.",
       icon: <FaSearch className="text-blue-400 w-8 h-8 mb-4" />,
     },
   ]
@@ -67,6 +60,16 @@ export default function Home() {
       },
     },
   }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
+    let angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+    angle = (angle + 360) % 360;
+    card.style.setProperty("--start", `${angle + 60}`);
+  };
 
   return (
     <motion.div
@@ -92,20 +95,18 @@ export default function Home() {
         {/* Cards Grid */}
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" variants={staggerContainer}>
           {offers.map((offer, index) => (
-            <motion.div key={index} variants={fadeInUp}>
-              <ElectricBorder
-                color="#7df9ff" // no green shadow
-                speed={1}
-                chaos={0.5}
-                thickness={2}
-                style={{ borderRadius: 16 }}
+            <motion.div key={index} variants={fadeInUp} className="h-full">
+              <div 
+                className="card bg-card/60 border border-border/50 p-8 rounded-xl hover:-translate-y-2 transform transition-transform duration-300 flex flex-col h-full"
+                onMouseMove={handleMouseMove}
               >
-                <div className="bg-card/60 backdrop-blur-sm border border-border/50 p-8 rounded-xl hover:scale-105 hover:shadow-lg transform transition-all duration-300 flex flex-col">
+                <div className="glow"></div>
+                <div className="card-content relative z-10">
                   {offer.icon}
                   <h3 className="text-xl font-bold text-foreground mb-4 tracking-wide">{offer.title}</h3>
                   <p className="text-muted-foreground leading-relaxed mb-6">{offer.description}</p>
                 </div>
-              </ElectricBorder>
+              </div>
             </motion.div>
           ))}
         </motion.div>

@@ -20,30 +20,29 @@ const educationData: Education[] = [
   location: "Tangier, Morocco",
   period: "2025 – 2026",
   description:
-    "Specialization in Computer Engineering. Key modules included Algorithms, C Programming, Web Development, Cloud Computing, Databases (PostgreSQL, T-SQL, SQL Server), and UML.",
+    "Specialization in Computer Engineering. Key coursework: Algorithms & Data Structures, C Programming, Web Development, Cloud Computing, Databases (PostgreSQL, T-SQL, SQL Server), and UML.",
 },
   {
-    degree: "DTS Développement Digital",
+    degree: "DTS Digital Development",
     institution: "ISMONTIC-OFPPT",
     location: "Tangier, Morocco",
     period: "2023 - 2025",
     description:
-      "Comprehensive program in software development, web applications, modern frameworks, and digital technologies.",
+      "Two-year program covering full-stack web development, modern frameworks (React, Laravel), software engineering principles, and digital technologies.",
   },
   {
-    degree: "Biology, Chemistry, Geology (BCG)",
+    degree: "BCG — Biology, Chemistry, Geology",
     institution: "FST Tangier, Abdlemalek Essaadi University",
     location: "Tangier, Morocco",
     period: "2022 - 2023",
-    description:
-      "First year foundation courses in biology, chemistry, geology, mathematics, and scientific fundamentals.",
+    description: "Foundation year in sciences.",
   },
   {
-    degree: "Baccalaureate - Science (SVT)",
+    degree: "Baccalaureate — Science (SVT)",
     institution: "Lycee Al Jammi",
     location: "Tangier",
     period: "2022",
-    description: "High school diploma",
+    description: "High school diploma.",
   },
 ]
 

@@ -71,6 +71,17 @@ const Projects: React.FC = () => {
     card.style.setProperty("--start", `${angle + 60}`);
   };
 
+  const handleRightCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = canvasRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
+    let angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+    angle = (angle + 360) % 360;
+    card.style.setProperty("--start", `${angle + 60}`);
+  };
+
   const handleNavigation = (direction: "previous" | "next") => {
     setSelectedProjectIndex((prevIndex) => {
       if (direction === "previous") {
@@ -215,16 +226,17 @@ const Projects: React.FC = () => {
         {/* Right Card - 3D Computer Display */}
         <motion.div 
           ref={canvasRef}
-          className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full"
+          onMouseMove={handleRightCardMouseMove}
+          className="card card-border rounded-lg h-96 md:h-full relative"
           variants={fadeInUp}
         >
+          <div className="glow pointer-events-none"></div>
           {useControls ? (
             // CONTROLS MODE - Use this to adjust positions
             <ComputerWithControls texture={currentProject.texture || ''} />
           ) : (
             // PRODUCTION MODE - Final version with set values
             <Canvas frameloop="demand" camera={{ position: [0, 0, 5], fov: 45 }}>
-              <color attach="background" args={['#1a1a1a']} />
               
               <OrbitControls 
                 enableZoom={true}

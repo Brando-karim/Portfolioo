@@ -40,7 +40,7 @@ export default function Me() {
           <div className="flex-1 max-w-2xl lg:max-w-3xl space-y-6">
             {/* Greeting */}
             <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
-              <p className="text-cyan-400 text-lg lg:text-xl mb-2 font-light tracking-wide">Hello! This is</p>
+              <p className="text-cyan-400 text-lg lg:text-xl mb-2 font-light tracking-wide">Hi, I&apos;m</p>
             </div>
 
             {/* Name */}
@@ -64,12 +64,21 @@ export default function Me() {
               </div>
             </div>
 
-            {/* Title */}
-            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-400">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl text-foreground mb-8 font-light text-balance leading-relaxed max-w-2xl">
-                Développeur Full-Stack & Ingénieur en Logiciels passionné par linnovation technologique.
+            {/* Subheadline */}
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl text-foreground mb-4 font-light">
+                Full-Stack Developer &amp; Computer Engineering Student
               </h2>
             </div>
+
+            {/* Tagline */}
+            <div className="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out delay-400">
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed max-w-2xl">
+                I build responsive web apps with React, Laravel, and modern JavaScript. Based in Tangier, Morocco and open to local, remote, and EU opportunities.
+              </p>
+            </div>
+
+
 
             {/* Buttons */}
             <div
@@ -80,21 +89,27 @@ export default function Me() {
                 <Button
                   size="lg"
                   className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-4 text-lg font-medium rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 group"
+                  onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  <span className="group-hover:translate-x-1 transition-transform duration-200"><a href="#projects">See My Projects</a></span>
+                  <span className="group-hover:translate-x-1 transition-transform duration-200">View My Projects</span>
                 </Button>
-<a href="/WorkTrueCv.pdf" target="_blank" rel="noopener noreferrer" download>
-  <Button
-    variant="outline"
-    size="lg"
-    className="border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-500 px-8 py-4 text-lg font-medium bg-transparent rounded-lg transition-all duration-300 hover:scale-105 group"
-  >
-    <span className="group-hover:translate-x-1 transition-transform duration-200">
-      Get My Resume
-    </span>
-  </Button>
-</a>
-
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white hover:border-gray-500 px-8 py-4 text-lg font-medium bg-transparent rounded-lg transition-all duration-300 hover:scale-105 group"
+                  onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <span className="group-hover:translate-x-1 transition-transform duration-200">Contact Me</span>
+                </Button>
+                <a href="/WorkTrueCv.pdf" target="_blank" rel="noopener noreferrer" download>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-violet-600 text-violet-300 hover:bg-violet-900/40 hover:text-white hover:border-violet-400 px-8 py-4 text-lg font-medium bg-transparent rounded-lg transition-all duration-300 hover:scale-105 group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform duration-200">Download CV</span>
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -109,7 +124,7 @@ export default function Me() {
               <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-gray-700 transition-all duration-500 group-hover:border-cyan-500/50 group-hover:shadow-2xl group-hover:shadow-cyan-500/20">
                 <Image
                   src="/photo1.jpg"
-                  alt="Benjelloul Karim - Portrait professionnel"
+                  alt="Karim Benjelloul - Full-Stack Developer"
                   width={384}
                   height={384}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"

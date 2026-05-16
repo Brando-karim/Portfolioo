@@ -28,10 +28,8 @@ export default function Home() {
         />
       </div>
 
-      {/* Navbar always on top */}
-      <nav className="relative z-50">
-        <Navbar />
-      </nav>
+      {/* Navbar — fixed position + spacer managed inside Navbar component */}
+      <Navbar />
 
       <main className="relative z-10">
         <Me />
